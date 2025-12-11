@@ -12,7 +12,7 @@ These are the changes I currently have in my version I've been using for weeks/m
 
 ### Android Install
 You will have to "side-load" the (latest) .apk from this page.  If that's not something you understand or
-are comfortable with, then I can't help you with additional support.  [This information](https://www.apps4av.com/manual-installation.html) from Avare* may help. 
+are comfortable with, then I can't help you with additional support.  <a target="_blank" href="https://www.apps4av.com/manual-installation.html">This information</a> from Avare* may help. 
 
 Due to Google Play Store certificate signing you cannot overwrite an existing version from the Play Store.  You will have to uninstall the Play Store version first, losing your preferences/routes/etc. and charts/plates/etc.  I recommend exporting your user data before (Menu, Documents, User Docs, User Data, Share; I email myself the user.db attachment, then download to my device and Import, YMMV).  Then re-download your charts/plates/etc.
 
