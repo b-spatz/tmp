@@ -2,9 +2,9 @@
 
 [2005-12-11]<br>
 This version of AvareX is derived from the main AvareX-0.0.68+68 version (prior to recent AI additions) but with the following modifications:
-* **Functional NOTAMS** using published FAA API on https://notams.aim.faa.gov/notamSearch/.  See [PR #93](https://github.com/apps4av/avarex/pull/93)
+* **Functional NOTAMS** (Internet-provided) using published FAA API on https://notams.aim.faa.gov/notamSearch/.  See [PR #93](https://github.com/apps4av/avarex/pull/93).
 
-* **METARs tab when not Kxxx** (e.g. 42J, X60).  Although those METAR data are known and depicted on the map page, the airport page (map longpress) does not include them.  This was a 1-line code fix and tested against existing AvareX data (weather.db:{metar,taf}).  See [PR #94](https://github.com/apps4av/avarex/pull/94)
+* **METARs tab when not Kxxx** (e.g. 42J, X60).  Although those METAR data are known and depicted on the map page, the airport page (map longpress) does not include them.  This was a 1-line code fix and tested against existing AvareX data (weather.db:{metar,taf}).  See [PR #94](https://github.com/apps4av/avarex/pull/94).
 * **Improved plate rendering quality** (cjsindt contribution, see [PR #95](https://github.com/apps4av/avarex/pull/95)).
 * **Dynon HDX Support** for missing GDL90 Ownship data; provides "external" GPS support from the Dynon messages broadcast over WiFi.  Otherwise AvareX map/position is largely inop on Dynon HDX ADS-B/WiFi module.  For non-Dynon users this should have no impact.
 
@@ -14,7 +14,7 @@ These are the changes I currently have in my version I've been using for weeks/m
 You will have to "side-load" the (latest) .apk from this page.  If that's not something you understand or
 are comfortable with, then I can't help you with additional support.  [This information](https://www.apps4av.com/manual-installation.html) from Avare* may help. 
 
-Due to Google Play Store certificate signing you cannot overwrite an existing version from the Play Store.  You will have to uninstall the Play Store version first, losing your preferences/routes/etc. and charts/plates/etc.  I recommend exporting your user data before (Menu, Documents, User Docs, User Data, Share; I email myself the user.db attachment, then download to my device and Import, YMMV).  Then download your charts/plates/etc.
+Due to Google Play Store certificate signing you cannot overwrite an existing version from the Play Store.  You will have to uninstall the Play Store version first, losing your preferences/routes/etc. and charts/plates/etc.  I recommend exporting your user data before (Menu, Documents, User Docs, User Data, Share; I email myself the user.db attachment, then download to my device and Import, YMMV).  Then re-download your charts/plates/etc.
 
 >#### Choosing the right Android ABI File
 >To keep the files within Github size limits, there are three versions of the app-*.apk.zip files here.  Choose the version corresponding to your Android device's Application Binary Interface (ABI).  The primary ABIs are `arm64-v8a` (64-bit, most modern devices), `armeabi-v7a` (32-bit, common older devices), and `x86_64` (emulators and some Intel-based devices).
