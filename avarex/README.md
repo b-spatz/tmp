@@ -4,7 +4,7 @@
 This version of AvareX is derived from the main AvareX-0.0.68+68 version (prior to recent AI additions) but with the following modifications:
 * **Functional NOTAMS** using published FAA API on https://notams.aim.faa.gov/notamSearch/.  See [PR #93](https://github.com/apps4av/avarex/pull/93)
 
-* **METARs tab when not Kxxx** (e.g. 42J, X60).  Although those METAR data are known and depicted on the map page, the airport (longpress) does not include them.  This was a 1-line code fix and tested against existing AvareX data (weather.db:{metar,taf}).  See [PR #94](https://github.com/apps4av/avarex/pull/94)
+* **METARs tab when not Kxxx** (e.g. 42J, X60).  Although those METAR data are known and depicted on the map page, the airport page (map longpress) does not include them.  This was a 1-line code fix and tested against existing AvareX data (weather.db:{metar,taf}).  See [PR #94](https://github.com/apps4av/avarex/pull/94)
 * **Improved plate rendering quality** (cjsindt contribution, see [PR #95](https://github.com/apps4av/avarex/pull/95)).
 * **Dynon HDX Support** for missing GDL90 Ownship data; provides "external" GPS support from the Dynon messages broadcast over WiFi.  Otherwise AvareX map/position is largely inop on Dynon HDX ADS-B/WiFi module.  For non-Dynon users this should have no impact.
 
