@@ -1,6 +1,6 @@
 # AvareX 0.68-based Android/Windows versions
 
-[2005-12-11]<br>
+[2025-12-11]<br>
 This version of AvareX is derived from the main AvareX-0.0.68+68 version (prior to recent AI additions) but with the following modifications:
 * **Functional NOTAMS** (Internet-provided) using published FAA API on https://notams.aim.faa.gov/notamSearch/.  See [PR #93](https://github.com/apps4av/avarex/pull/93).
 
