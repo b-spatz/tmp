@@ -14,13 +14,13 @@ These are the changes I currently have in my version I've been using for weeks/m
 You will have to "side-load" the (latest) .apk from this page.  If that's not something you understand or
 are comfortable with, then I can't help you with additional support.  <a target="_blank" href="https://www.apps4av.com/manual-installation.html">This information</a> from Avare* may help. 
 
-Due to Google Play Store certificate signing you cannot overwrite an existing version from the Play Store.  You will have to uninstall the Play Store version first, losing your preferences/routes/etc. and charts/plates/etc.  I recommend exporting your user data before (Menu, Documents, User Docs, User Data, Share; I email myself the user.db attachment, then download to my device and Import, YMMV).  Then re-download your charts/plates/etc.
+Due to Google Play Store certificate signing you cannot overwrite an existing version from the Play Store.  The version here will install along-side any "production" installs as "AvareXB" so you can distinguish between versions. You will have to download it's own set of charts/plates/etc.  You can export your user data (settings, Aircraft, routes, etc.) and import into AvareXB.  To export: Menu, Documents, User Docs, User Data, Share.  I email myself the `user.db` attachment (effectively "cloud storage"), then download to your device and Import.
 
 >#### Choosing the right Android ABI File
->To keep the files within Github size limits, there are three versions of the app-*.apk.zip files here.  Choose the version corresponding to your Android device's Application Binary Interface (ABI).  The primary ABIs are `arm64-v8a` (64-bit, most modern devices), `armeabi-v7a` (32-bit, common older devices), and `x86_64` (emulators and some Intel-based devices).
+>To keep the files within Github size limits, there are three separate versions of the `app-*.apk.zip` files here.  Choose the version corresponding to your Android device's Application Binary Interface (ABI).  The primary ABIs are `arm64-v8a` (64-bit, most modern devices), `armeabi-v7a` (32-bit, common older devices), and `x86_64` (emulators and some Intel-based devices).
 
 ### Windows Install
-Extract the Windows*.ZIP and run the program from the Release folder.  It should use your existing user/chart data under _user_\Documents.
+Extract the `Windows-*.ZIP` and run the program from the Release folder.  It should use your existing user/chart data under _user_\Documents.
 
 ### Feedback/Support
 I welcome your feedback on the efficacy of these simple changes.  However, I can offer only limited support at this time.  I am reluctantly making these available due to demand from the forum.  I'm not looking to create a rift in the AvareX community, but these features are desired (per the forum), but not everyone has the time or inclination to tool up with Flutter and make code changes like I have (long story).  But I'm happy to share what I've been using for months to share/demonstrate the benefits.  I don't expect this to be a long-term situation.  Blue Skies!
