@@ -1,5 +1,9 @@
 2025-12-17: finally start collecting basic Help info for a 1-page guide like Avare had
 
+Consider eventual integration into AvareX under a Help button providing a
+scrollable 1-page guide: not every detail but at least FAQs to help our gentle user
+and keep forum traffic manageable.  Crazy talk, I know.
+
 #### Traffic button (S/M/L)
 Right side, above Layers
 ```
