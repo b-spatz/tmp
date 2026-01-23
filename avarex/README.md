@@ -10,7 +10,7 @@ This version of AvareX is derived from the main AvareX-0.0.68+68 version (prior 
 
 * **Dynon HDX Support** for missing GDL90 Ownship data; provides "external" GPS support from the Dynon messages broadcast over WiFi.  Otherwise AvareX map/position is largely inop on Dynon HDX ADS-B/WiFi module.  For non-Dynon users this should have no impact.
 
-* **Reverse stratux PFD/AHRS roll orientation** As offered in February 2025 as [PR #59]](https://github.com/apps4av/avarex/pull/59), automgically detect a stratux as GDL90-provider and reverse the roll orientation accordingly.  Follow preferred stratux identification method per the author of stratux.
+* **Reverse stratux PFD/AHRS roll orientation** As offered in February 2025 via [PR #59](https://github.com/apps4av/avarex/pull/59), automagically detect a stratux as GDL90-provider and reverse the roll orientation accordingly.  Follow [preferred stratux identification method](https://github.com/cyoung/stratux/blob/master/notes/app-vendor-integration.md) per the author of stratux.
 
 * ***Android SD Card storage**  (*by request only, not default build) Detect and use Android external SD card storage for charts/data.  Useful for older devices with, for example, only 16 GB of storage (Samsung A01).
 
