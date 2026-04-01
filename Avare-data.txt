@@ -1,0 +1,478 @@
+Avare[X] Data
+2026-01-08, bspatz (use 2513 cycle data as examples where appropriate)
+
+Start collecting summary of the various data produced and used by Avare[X]:
+tabular data (airports, METARs) and charts/plates/CSUP
+
+Overview:
+Charts, plates/CSUP shared between Avare[X] (formats, server download locations, client folders uses)
+Both databases[x].zip provide main.db, but incompatible (same tables have differing schemas, different/new tables)
+weather.db differs with Internet sources; GDL90 will trickle in to update via caching layer?
+   Avare: downloaded from apps4av.org server periodically by client, updated on server every 10 minutes
+   AvareX: downloaded directly from Internet sources by client on demand
+
+AvareX Assets
+Come from www.apps4av.org/regions/[cycle], avare.buggle.org/[cycle]/
+Cycle data (e.g. "2513", current via version.php from root URL above):
+charts: <region>_{SEC,TAC,ENR_L{LHA},HEL,FLY}.zip: basemap tiles .webp per WMS z/x/y format
+   tiles/ folder on client under <type>/<z>/<x>/<y>.webp for type SEC=0, ENR_L=3, etc.
+plates/CSUP: <region>_{TPP,CSUP}.zip: .png
+   {plates,afd}/ folder on client under <airport_identifier>/*.png (was in "Airport/Facility Directory" before "Chart Supplement")
+SQLite databases:
+   main.db: download from <cycle>/databasesx.zip, incompatible with Avare (by differing schemas and tables)
+   weather.db: created on client from various Internet sources; updated from Internet or GDL90
+   user.db: created on client initially, collects state and settings from user interaction/config; can import
+
+main.db tables: airportfreq, airways, fix, obs, airportrunways, awos, geo, saa, airports, cifp_sid_star_app, nav
+Table airportfreq: 8085 rows
+    DLID = 19283.*A
+    Type = GND/P
+    Freq = 121.9
+
+Table airways: 17116 rows
+        name = V144
+    sequence = 80
+    Latitude = 39.5567152777778
+   Longitude = -79.8604122222222
+
+Table fix: 69883 rows
+     LocationID = CUTTL
+    ARPLatitude = 48.8485138888889
+   ARPLongitude = -93.1395861111111
+           Type = YREP-PT
+   FacilityName = CUTTL
+
+Table obs: 79637 rows
+    ARPLatitude = 42.4663055555556
+   ARPLongitude = -89.8713611111111
+         Height = 1389.0
+
+Table airportrunways: 23564 rows
+          DLID = 02709.15*A
+        Length = 1300
+         Width = 30
+       Surface = DIRT
+       LEIdent = 08
+       HEIdent = 26
+    LELatitude =
+    HELatitude =
+   LELongitude =
+   HELongitude =
+   LEElevation =
+   HEElevation =
+    LEHeadingT =
+     HEHeading =
+          LEDT =
+          HEDT =
+      LELights =
+      HELights =
+         LEILS =
+         HEILS =
+        LEVGSI =
+        HEVGSI =
+     LEPattern =
+     HEPattern =
+
+Table awos: 2544 rows
+         DLID = 23328.*A
+         Type = ASOS
+       Status = Y
+     Latitude = -35.0526944444444
+    Longitude = 101.705916666667
+    Elevation = 3606.6
+   Frequency1 = 118.85
+   Frequency2 =
+   Telephone1 = 806-223-2973
+   Telephone2 =
+       Remark =
+
+Table geo: 64800 rows
+      Latitude = 68.0
+     Longitude = -94.0
+        height = -33.0
+   declination = -6.0
+
+Table saa: 1234 rows
+   designator = MBIGBEAR
+         name = BIG BEAR MOA  MI
+   upperlimit = 180 STD
+   lowerlimit = 00500 SFC
+    begintime = 08:00
+      endtime = 18:00
+      timeref = UTC
+     beginday = 01-01
+       endday = 31-12
+          day = Using agency. U.S. Air Force  Northeast Air Defense Sector/DOOS  Griffiss AFB  NY.
+       FreqTx = 322.5 121.25
+       FreqRx = 322.5 121.25
+          lat = 46.4546
+          lon = -88.9566
+
+Table airports: 19707 rows
+                LocationID = IA21
+                      DLID = 05852.*A
+                     FaaID = IA21
+               ARPLatitude = 41.9566972222222
+              ARPLongitude = -94.0869416666667
+                      Type = AIRPORT
+              FacilityName = KNIGHT FLD
+                       Use = PR
+                  FSSPhone = 1-800-WX-BRIEF
+                   Manager = TODD KNIGHT
+              ManagerPhone = 602-490-0614
+              ARPElevation = 989.0
+         MagneticVariation =
+    TrafficPatternAltitude =
+                 FuelTypes =
+                   Customs =
+                    Beacon =
+             LightSchedule =
+                 SegCircle =
+                      ATCT = N
+         UNICOMFrequencies =
+             CTAFFrequency =
+   NonCommercialLandingFee =
+                     State = IA
+                      City = BERKLEY
+
+Table cifp_sid_star_app: 208364 rows
+                                  record_type = S
+                           customer_area_code = USA
+                                 section_code = P
+                           airport_identifier = KCHS
+                                  icao_code_1 = K7
+                              subsection_code = F
+                 sid_star_approach_identifier = R33-Y
+                                   route_type = A
+                        transition_identifier = SEAMS
+                              sequence_number = 050
+                               fix_identifier = SHRMP
+                                  icao_code_2 = K7
+                               section_code_2 = P
+                            subsection_code_2 = C
+                   continuation_record_number = 0
+                    waypoint_description_code = EE B
+                               turn_direction =
+                                          rnp = 010
+                         path_and_termination = TF
+                         turn_direction_valid =
+                           recommended_navaid =
+                                  icao_code_3 =
+                                   arc_radius =
+                                        theta =
+                                          rho =
+                              magnetic_course =
+      route_distance_holding_distance_or_time =
+                             recd_nav_section =
+                          recd_nav_subsection =
+                                     reserved =
+                         altitude_description = +
+                                atc_indicator =
+                                   altitude_1 = 03000
+                                   altitude_2 =
+                          transition_altitude =
+                                  speed_limit =
+                               vertical_angle =
+   center_fix_or_taa_procedure_turn_indicator =
+       multiple_code_or_taa_sector_identifier =
+                                  icao_code_4 =
+                               section_code_3 =
+                            subsection_code_3 =
+                           gps_fms_indication = A
+                      speed_limit_description =
+                       apch_route_qualifier_1 = J
+                       apch_route_qualifier_2 = S
+                           file_record_number = 49346
+                                   cycle_date = 2012
+
+Table nav: 2638 rows
+     LocationID = CRW
+    ARPLatitude = 38.373125
+   ARPLongitude = -81.5932333333333
+           Type = VOT
+   FacilityName = CHARLESTON 108.80
+      Variation = 0
+          Class = V
+          Hiwas = N
+      Elevation = 980.0
+
+user.db (created on initial launch, or imported from previous...kinda)
+tables: aiQueries, checklist, plan, settings, wnb, aircraft, logbook, recent, sketch
+[need representative examples from "mature" user.db]
+[note the versioning issues, inc. resets previous settings if new version, positional vs. subkey-bsed design]
+
+Settings: 
+On initial launch after "signing" the intro screen:
+key             value
+--------------  -----
+key-signed      true
+key-user-email
+key-intro       false
+
+After resizing instruments and setting layers (after some chart/plate/CSUP downloads):
+key                          value
+---------------------------  -------------------------------------------------------------------
+key-signed                   true
+key-user-email
+key-intro                    false
+key-review-last-ask          1767894166618
+key-instrument-scale-factor  1.8000000000000007
+key-layers-opacity-v42       1.0,1.0,1.0,0.0,0.0,0.0,0.0,1.0,0.5,1.0,0.0,1.0,1.0,0.0,0.0,0.0,0.0
+key-audible-alerts           true
+
+After additional state from map use/centering, etc.
+
+key                           value
+----------------------------  ---------------------------------------------------------------
+key-signed                    true
+key-user-email
+key-intro                     false
+key-layers-opacity-v40        1.0,1.0,1.0,0.0,0.0,0.0,1.0,0.5,1.0,0.0,1.0,1.0,1.0,0.0,0.0,0.0
+key-audible-alerts            true
+key-traffic-puck-size         S
+key-instruments-v14           SRC,GS,ALT,MT,PRV,NXT,DIS,BRG,ETA,ETE,VSR,UPT,DNT,UTC,FLT
+key-instrument-scale-factor   1.6000000000000005
+key-review-last-ask           1766031712792
+key-enable-instruments-plate  false
+key-current-plate-airport     42J
+key-chart-center-longitude    -82.30524133300825
+key-chart-center-latitude     29.728764840138105
+key-chart-zoom                10.0
+key-chart-rotation            0.0
+
+
+Avare Assets
+Reuse charts/plates/CSUP info with AvareX (see above)
+SQLite databases:
+   main.db: download from <cycle>/databases.zip, incompatible with AvareX (by differing schemas and tables)
+   weather.db (see below)
+unique to this "legacy" version, and in the root directory of the servers, (update periodically):
+   TFRs.zip, conus.zip, weather.zip (updated every 10 minutes, see github/apps4av/avare Actions)
+   weather.db: download from /weather.zip (weather.db, latest_fcat.{png,txt} [still used?])
+   conus.zip: latest_radaronly{,1,2}.png, latest.txt (bounding boxes for each of the three NEXRAD images)
+
+TFRs.zip: tfr.txt (single line, each denoted by "TFR:: " prefix, e.g.
+   TFR:: Top 2000 FT Low 0 FT Eff 2026-01-08T02:00:00 Exp 2026-01-09T06:00:00 ,30.22253968,-93.60361111,30.22228583,-93.60027056 [...]
+   TFR:: Top 5000 FT Low 0 FT Eff 2026-01-16T22:00:00 Exp 2026-01-18T01:00:00 ,33.00531955,-111.76644444,33.00455804,-111.75612014 [...]
+conus.zip: latest_radaronly{,1,2}.png, latest.txt (bounding boxes for each of the three NEXRAD images)
+
+main.db tables: airportfreq, airways, fix, obs, airportrunways, awos, geo, saa, airports, cifp_sid_star_app, nav
+Table airportfreq: 8085 rows
+   LocationID = MCN
+         Type = LCL/P
+         Freq = 128.2
+
+Table airways: 17116 rows
+        name = V170
+    sequence = 320
+    Latitude = 42.4274111111111
+   Longitude = -84.1942444444445
+
+Table fix: 69883 rows
+     LocationID = EJOSO
+    ARPLatitude = 9.29273888888889
+   ARPLongitude = 167.352716666667
+           Type = YMIL-WAYPOINT
+   FacilityName = EJOSO
+
+Table obs: 79637 rows
+    ARPLatitude = 34.76885
+   ARPLongitude = -103.158808333333
+         Height = 4915.0
+
+Table airportrunways: 23564 rows
+    LocationID = MDD
+        Length = 5571
+         Width = 75
+       Surface = ASPH-G
+       LEIdent = 07
+       HEIdent = 25
+    LELatitude = 32.0369527777778
+    HELatitude = 32.0409248055556
+   LELongitude = -102.110594444444
+   HELongitude = -102.093232777778
+   LEElevation = 2803.4
+   HEElevation = 2789.9
+    LEHeadingT = 075
+     HEHeading = 255
+          LEDT = 550
+          HEDT =
+      LELights =
+      HELights =
+         LEILS =
+         HEILS =
+        LEVGSI = P2L
+        HEVGSI = V4L
+     LEPattern = N
+     HEPattern = Y
+
+Table awos: 2639 rows
+   LocationID = 0CO
+         Type = AWOS-3
+       Status = Y
+     Latitude = -39.1166666666667
+    Longitude = 105.763055555556
+    Elevation = 12493.0
+   Frequency1 = 134.325
+   Frequency2 =
+   Telephone1 =
+   Telephone2 =
+       Remark = STAND-ALONE FACILITY NOT ASSOCIATED WITH AN AIRPORT OR NAVAID....
+
+Table geo: 64800 rows
+      Latitude = -62.0
+     Longitude = 12.0
+        height = 22.0
+   declination = -29.0
+
+Table saa: 1234 rows
+   designator = R4006
+         name = R-4006 PATUXENT RIVER  MD
+   upperlimit = 25000 MSL
+   lowerlimit = 03500 MSL
+    begintime = 07:00
+      endtime = 23:00
+      timeref = UTC
+     beginday = 01-01
+       endday = 31-12
+          day = Controlling agency   FAA  Washington ARTCC.
+       FreqTx = 281.4 133.9
+       FreqRx = 281.4 133.9
+          lat = 38.2965
+          lon = -76.0237
+
+Table airports: 19707 rows
+                LocationID = 7CA9
+               ARPLatitude = 38.4626666666667
+              ARPLongitude = -122.414666666667
+                      Type = HELIPORT
+              FacilityName = RIVER MEADOW FARM
+                       Use = PR
+                  FSSPhone = 1-800-WX-BRIEF
+                   Manager = DIANE WILSEY
+              ManagerPhone = 415-922-2875
+              ARPElevation = 146.0
+         MagneticVariation = 16E
+    TrafficPatternAltitude =
+                 FuelTypes =
+                   Customs =
+                    Beacon =
+             LightSchedule =
+                 SegCircle = N
+                      ATCT = N
+         UNICOMFrequencies =
+             CTAFFrequency =
+   NonCommercialLandingFee = N
+                     State = CA
+                      City = RUTHERFORD
+
+Table cifp_sid_star_app: 208364 rows
+                                  record_type = S
+                           customer_area_code = USA
+                                 section_code = P
+                           airport_identifier = KCVO
+                                  icao_code_1 = K1
+                              subsection_code = F
+                 sid_star_approach_identifier = R17
+                                   route_type = R
+                        transition_identifier =
+                              sequence_number = 011
+                               fix_identifier = EGBEW
+                                  icao_code_2 = K1
+                               section_code_2 = P
+                            subsection_code_2 = C
+                   continuation_record_number = 0
+                    waypoint_description_code = E
+                               turn_direction =
+                                          rnp = 010
+                         path_and_termination = TF
+                         turn_direction_valid =
+                           recommended_navaid =
+                                  icao_code_3 =
+                                   arc_radius =
+                                        theta =
+                                          rho =
+                              magnetic_course =
+      route_distance_holding_distance_or_time =
+                             recd_nav_section =
+                          recd_nav_subsection =
+                                     reserved =
+                         altitude_description = +
+                                atc_indicator =
+                                   altitude_1 = 02900
+                                   altitude_2 =
+                          transition_altitude =
+                                  speed_limit =
+                               vertical_angle =
+   center_fix_or_taa_procedure_turn_indicator =
+       multiple_code_or_taa_sector_identifier =
+                                  icao_code_4 =
+                               section_code_3 =
+                            subsection_code_3 =
+                           gps_fms_indication = A
+                      speed_limit_description =
+                       apch_route_qualifier_1 = J
+                       apch_route_qualifier_2 = S
+                           file_record_number = 60868
+                                   cycle_date = 2110
+
+Table nav: 2638 rows
+     LocationID = CQX
+    ARPLatitude = 41.6919338888889
+   ARPLongitude = -69.9877475
+           Type = NDB
+   FacilityName = NAUSET 279
+      Variation = -16
+          Class = M
+          Hiwas = N
+      Elevation = 56.0
+	  
+weather.db (incompatible with AvareX versions: differing schemas for same tables + new tables)
+tables: airsig, apirep, metars, tafs, wa
+Table airsig: 4 rows
+               raw_text = WSUS05 KKCI 072003SLCV WS 072003SIGMET VICTOR 1 VALID UNTIL 072359SIGMET NV AZ CA AND CSTL WTRSFROM 70N LAS TO 30SW TBC TO 30E BZA TO 50WSW MZB TO 70N LASOCNL SEV TURB BTN FL180 AND FL330. DUE TO WNDSHR ASSOCD WITHJTST. RPTD BY ACFT. CONDS CONTG BYD 2359Z.
+        valid_time_from = 2026-01-07T20:03:00.000Z
+          valid_time_to = 2026-01-07T23:59:00.000Z
+                  point = -115.1600:37.2478;-111.7084:35.7635;-114.0017:32.7686;-118.1447:32.4570;-115.1600:37.2478
+             min_ft_msl = 18000
+             max_ft_msl = 33000
+   movement_dir_degrees =
+      movement_speed_kt =
+                 hazard = TURB
+               severity = SEV
+         airsigmet_type = SIGMET
+
+Table apirep: 790 rows
+           raw_text = ELP UA /OV ELP276127/TM 2122/FL270/TP A319/TB OCNL LT MOD TURB/RM ZAB FDCS
+   observation_time = 2026-01-07T21:22:00.000Z
+          longitude = -108.6632
+           latitude = 32.4467
+        report_type = PIREP
+
+Table metars: 5007 rows
+          raw_text = METAR KLLN 072235Z AUTO 22011KT 9SM CLR 21/M06 A2980 RMK AO2
+        issue_time = 2026-01-07T22:35:00.000Z
+        station_id = KLLN
+   flight_category = VFR
+         longitude = -102.3751
+          latitude = 33.556
+
+Table tafs: 2962 rows
+     raw_text = TAF KPBI 072033Z 0721/0818 12007KT P6SM FEW030 SCT050 FM080000 VRB03KT P6SM FEW030 FM081600 12008KT P6SM FEW030
+   issue_time = 2026-01-07T20:33:00.000Z
+   station_id = KPBI
+
+Table wa: 176 rows
+   stationid = CRP
+       valid = DATA BASED ON 071800Z
+   longitude = -97.4333333333333
+    latitude = 27.9
+         w3k = 1821
+         w6k = 1826+18
+         w9k = 2020+12
+        w12k = 2316+05
+        w18k = 2637-08
+        w24k = 2539-19
+        w30k = 254336
+        w34k = 274747
+        w39k = 298258

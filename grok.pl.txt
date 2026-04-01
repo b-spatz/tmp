@@ -1,0 +1,26 @@
+#!/usr/bin/perl
+#
+# grok -- a SQLite database via simple summary of tables
+#
+# 2026-01-08, bspatz: first try for Unix and Windoze; tweak exe below
+#
+$sqlite3 = '/var/data/scripts/sqlite/sqlite3';
+$sqlite3 = 'Y:/sqlite3.exe' if ($^O eq 'MSWin32'); # that's an "oh" BTW, not zero
+
+$db = $ARGV[0] || 'foo.db';
+die("Unable to open $db !\n") if (! -r "$db");
+print "Grokking database $db...\n";
+
+@tables = split(' ', `$sqlite3 $db ".tables"`);
+print "tables: " . join(', ', @tables) . "\n";
+
+foreach (@tables) {
+   chop($rows = `$sqlite3 $db "select count(*) from $_"`);
+   print "Table $_: $rows rows\n";
+   foreach (`$sqlite3 -line $db "select * from $_ order by random() limit 1"`) {
+      print "   $_";
+   }
+   print "\n";
+}
+#
+# [end of file]
