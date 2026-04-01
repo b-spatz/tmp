@@ -1,0 +1,30 @@
+-- 2026-03-29, bspatz: test K42J == 42J by coords
+
+.param set $epsilon 0.006
+--.param set $epsilon 0.01
+
+--attach database '/home/bspatz/Documents/avarex/weather.db' as wx;
+attach database 'main.db' as m;
+attach database 'weather.db' as wx;
+
+.mode column
+.headers on
+
+create temp table foo as
+select station, locationid, m.arplatitude, m.arplongitude, a.arplatitude, a.arplongitude
+from   metar m
+join   airports a on substr(station,1,1)='K' and substr(station,2)=locationid
+where  station='K42J';
+
+.print "\nChecking..."
+create temp table idcheck as
+select station, locationid, m.arplatitude, m.arplongitude, a.arplatitude, a.arplongitude,
+       (m.arplatitude  - a.arplatitude)  as dlat,
+       (m.arplongitude - a.arplongitude) as dlong
+from   metar m
+join   airports a on substr(station,1,1)='K' and substr(station,2)=locationid
+--where  abs(dlat) > $epsilon or abs(dlong) > $epsilon
+;
+select count(*) as 'airport XXX has KXXX METAR' from idcheck;
+select *, $epsilon as epsilon from idcheck where  abs(dlat) > $epsilon or abs(dlong) > $epsilon;
+select max(dlat), max(dlong) from idcheck;

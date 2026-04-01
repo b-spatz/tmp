@@ -1,0 +1,39 @@
+Run output from id.sql
+sqlite3 :memory: < id.sql | more
+
+Checking...
+airport XXX has KXXX METAR
+--------------------------
+279
+
+station  LocationID  ARPLatitude  ARPLongitude  ARPLatitude:1     ARPLongitude:1     dlat                  dlong                 epsilon
+-------  ----------  -----------  ------------  ----------------  -----------------  --------------------  --------------------  -------
+K57C     57C         42.7972      -88.3655      42.7971613888889  -88.3726172222222  3.86111110941556e-05  0.00711722222220601   0.006
+KY63     Y63         45.9891      -95.9946      45.9861666666667  -95.98575          0.00293333333330281   -0.00885000000000957  0.006
+KI95     I95         40.6142      -83.6374      40.6100925        -83.6442592777778  0.00410749999999638   0.00685927777780648   0.006
+K49B     49B         44.4284      -103.3799     44.4186769722222  -103.377723944444  0.00972302777780243   -0.00217605555600642  0.006
+KS25     S25         47.7954      -103.2567     47.7929991666667  -103.249352222222  0.00240083333330432   -0.00734777777799422  0.006
+KS34     S34         47.4718      -114.9009     47.4735558333333  -114.907081388889  -0.00175583333329854  0.00618138888900432   0.006
+KC09     C09         41.4317      -88.4152      41.42475          -88.4186666666667  0.00694999999999624   0.00346666666669648   0.006
+K8A1     8A1         34.3996      -86.2682      34.4061891944444  -86.2608702777778  -0.00658919444440187  -0.0073297222221953   0.006
+KN79     N79         40.8371      -76.546       40.8369166666667  -76.5524444444444  0.000183333333296787  0.00644444444439785   0.006
+K06C     06C         41.9924      -88.1091      41.9893408333333  -88.1012427777778  0.00305916666670214   -0.00785722222219931  0.006
+K9L2     9L2         34.996       -117.857      34.9907847222222  -117.863191666667  0.00521527777780051   0.00619166666700721   0.006
+
+max(dlat)            max(dlong)
+-------------------  -------------------
+0.00972302777780243  0.00711722222220601
+
+Conclusion, adding logic to check for METAR for KXXX if airport ID XXX has no METAR
+allows matching for existing METAR data where XXX=KXXX (e.g. 42J, X60, 28J).
+Check: in those cases, the location (lat, long) is nearly identical.
+
+max latitude delta  is 0.00972 or 0.58 nm
+max longitude delta is 0.00712 or 0.43 nm at equator (0.30 nm at 45N latitude)
+
+So about 0.5 nm max error in checking coordinates from FAA airport and METAR data.
+So, yeah, these are the same locations, even though the FAA uses XXX for the airport ID
+and KXXX for the METAR station ID.
+
+Zubair either doesn't know this, or doesn't care.  But active pilots do.
+
